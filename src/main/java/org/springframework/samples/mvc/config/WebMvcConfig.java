@@ -1,4 +1,4 @@
- package org.springframework.samples.mvc.config;
+package org.springframework.samples.mvc.config;
 
 import java.util.List;
 
@@ -27,6 +27,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 // DispatcherServlet context: defines Spring MVC infrastructure
 // and web application components
@@ -60,17 +61,17 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/").setViewName("home");
 	}
 
-//	@Override
-//	public void configureViewResolvers(ViewResolverRegistry registry) {
-//		registry.jsp("/WEB-INF/views/", ".jsp");
-//	}
+	// @Override
+	// public void configureViewResolvers(ViewResolverRegistry registry) {
+	// registry.jsp("/WEB-INF/views/", ".jsp");
+	// }
 
-//	@Override
-//	public void configurePathMatch(PathMatchConfigurer configurer) {
-//		UrlPathHelper pathHelper = new UrlPathHelper();
-//		pathHelper.setRemoveSemicolonContent(false); // For @MatrixVariable's
-//		configurer.setUrlPathHelper(pathHelper);
-//	}
+	// @Override
+	// public void configurePathMatch(PathMatchConfigurer configurer) {
+	// UrlPathHelper pathHelper = new UrlPathHelper();
+	// pathHelper.setRemoveSemicolonContent(false); // For @MatrixVariable's
+	// configurer.setUrlPathHelper(pathHelper);
+	// }
 
 	@Override
 	public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
@@ -82,43 +83,25 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public MultipartResolver multipartResolver() {
 		return new CommonsMultipartResolver();
 	}
-	
+
 	/**
 	 * ²Î¿¼5.0.4ÊµÏÖ
+	 * 
 	 * @return
 	 */
 	@Bean
 	public ViewResolver mvcViewResolver() {
-//		ViewResolverRegistry registry = new ViewResolverRegistry(
-//				mvcContentNegotiationManager(), this.applicationContext);
-//		configureViewResolvers(registry);
-//
-//		if (registry.getViewResolvers().isEmpty() && this.applicationContext != null) {
-//			String[] names = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(
-//					this.applicationContext, ViewResolver.class, true, false);
-//			if (names.length == 1) {
-//				registry.getViewResolvers().add(new InternalResourceViewResolver());
-//			}
-//		}
-//
-//		ViewResolverComposite composite = new ViewResolverComposite();
-//		composite.setOrder(registry.getOrder());
-//		composite.setViewResolvers(registry.getViewResolvers());
-//		if (this.applicationContext != null) {
-//			composite.setApplicationContext(this.applicationContext);
-//		}
-//		if (this.servletContext != null) {
-//			composite.setServletContext(this.servletContext);
-//		}
-//		return composite;
-		
-		return null;
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setSuffix(".jsp");
+
+		return resolver;
 	}
 
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -130,25 +113,25 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -160,7 +143,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
