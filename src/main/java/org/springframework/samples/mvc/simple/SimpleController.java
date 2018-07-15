@@ -1,12 +1,13 @@
 package org.springframework.samples.mvc.simple;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-@RestController
+@Controller
 public class SimpleController {
 
-	@GetMapping("/simple")
+	@RequestMapping(method = RequestMethod.GET, value = "/simple")
 	public String simple() {
 		return "Hello world!";
 	}

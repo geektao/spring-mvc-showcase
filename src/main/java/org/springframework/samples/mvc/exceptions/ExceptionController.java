@@ -1,18 +1,19 @@
 package org.springframework.samples.mvc.exceptions;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-@RestController
+@Controller
 public class ExceptionController {
 
-	@GetMapping("/exception")
+	@RequestMapping(method = RequestMethod.GET,value="/exception")
 	public String exception() {
 		throw new IllegalStateException("Sorry!");
 	}
 
-	@GetMapping("/global-exception")
+	@RequestMapping(method = RequestMethod.GET, value ="/global-exception")
 	public String businessException() throws BusinessException {
 		throw new BusinessException();
 	}
