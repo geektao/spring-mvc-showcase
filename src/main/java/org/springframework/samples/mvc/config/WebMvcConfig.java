@@ -1,4 +1,4 @@
-package org.springframework.samples.mvc.config;
+ package org.springframework.samples.mvc.config;
 
 import java.util.List;
 
