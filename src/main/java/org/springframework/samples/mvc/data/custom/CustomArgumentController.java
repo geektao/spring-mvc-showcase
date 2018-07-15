@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CustomArgumentController {
@@ -16,7 +17,7 @@ public class CustomArgumentController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/data/custom")
-	public String custom(@RequestAttribute("foo") String foo) {
+	public @ResponseBody String custom(@RequestAttribute("foo") String foo) {
 		return "Got 'foo' request attribute value '" + foo + "'";
 	}
 

@@ -10,33 +10,34 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/data")
 public class RequestDataController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "param")
-	public String withParam(@RequestParam String foo) {
+	public  @ResponseBody String withParam(@RequestParam String foo) {
 		return "Obtained 'foo' query parameter value '" + foo + "'";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "group")
-	public String withParamGroup(JavaBean bean) {
+	public  @ResponseBody String withParamGroup(JavaBean bean) {
 		return "Obtained parameter group " + bean;
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "path/{var}")
-	public String withPathVariable(@PathVariable String var) {
+	public  @ResponseBody String withPathVariable(@PathVariable String var) {
 		return "Obtained 'var' path variable value '" + var + "'";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "{path}/simple")
-	public String withMatrixVariable(@PathVariable String path, @MatrixVariable String foo) {
+	public   @ResponseBody String withMatrixVariable(@PathVariable String path, @MatrixVariable String foo) {
 		return "Obtained matrix variable 'foo=" + foo + "' from path segment '" + path + "'";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "{path1}/{path2}")
-	public String withMatrixVariablesMultiple(@PathVariable String path1,
+	public  @ResponseBody String withMatrixVariablesMultiple(@PathVariable String path1,
 			@MatrixVariable(value = "foo", pathVar = "path1") String foo1, @PathVariable String path2,
 			@MatrixVariable(value = "foo", pathVar = "path2") String foo2) {
 
@@ -45,22 +46,22 @@ public class RequestDataController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "header")
-	public String withHeader(@RequestHeader String Accept) {
+	public  @ResponseBody String withHeader(@RequestHeader String Accept) {
 		return "Obtained 'Accept' header '" + Accept + "'";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "cookie")
-	public String withCookie(@CookieValue String openid_provider) {
+	public  @ResponseBody String withCookie(@CookieValue String openid_provider) {
 		return "Obtained 'openid_provider' cookie '" + openid_provider + "'";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "body")
-	public String withBody(@RequestBody String body) {
+	public  @ResponseBody String withBody(@RequestBody String body) {
 		return "Posted request body '" + body + "'";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "entity")
-	public String withEntity(HttpEntity<String> entity) {
+	public  @ResponseBody String withEntity(HttpEntity<String> entity) {
 		return "Posted request body '" + entity.getBody() + "'; headers = " + entity.getHeaders();
 	}
 

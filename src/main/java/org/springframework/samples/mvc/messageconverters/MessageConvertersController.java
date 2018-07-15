@@ -21,19 +21,19 @@ public class MessageConvertersController {
 	// StringHttpMessageConverter
 
 	@RequestMapping(method = RequestMethod.POST, value = "/string")
-	public String readString(@RequestBody String string) {
+	public @ResponseBody String readString(@RequestBody String string) {
 		return "Read string '" + string + "'";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/string")
-	public String writeString() {
+	public @ResponseBody String writeString() {
 		return "Wrote a string";
 	}
 
 	// Form encoded data (application/x-www-form-urlencoded)
 
 	@RequestMapping(method = RequestMethod.POST, value = "/form")
-	public String readForm(@ModelAttribute JavaBean bean) {
+	public @ResponseBody String readForm(@ModelAttribute JavaBean bean) {
 		return "Read x-www-form-urlencoded: " + bean;
 	}
 
@@ -49,12 +49,12 @@ public class MessageConvertersController {
 	// useful for serving clients that expect to work with XML)
 
 	@RequestMapping(method = RequestMethod.POST, value = "/xml")
-	public String readXml(@RequestBody JavaBean bean) {
+	public @ResponseBody String readXml(@RequestBody JavaBean bean) {
 		return "Read from XML: " + bean;
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/xml")
-	public JavaBean writeXml() {
+	public @ResponseBody JavaBean writeXml() {
 		return new JavaBean("bar", "apple");
 	}
 
@@ -63,7 +63,7 @@ public class MessageConvertersController {
 	// JSON)
 
 	@RequestMapping(method = RequestMethod.POST, value = "/json")
-	public String readJson(@Valid @RequestBody JavaBean bean) {
+	public @ResponseBody String readJson(@Valid @RequestBody JavaBean bean) {
 		return "Read from JSON: " + bean;
 	}
 
@@ -76,7 +76,7 @@ public class MessageConvertersController {
 	// serving Atom feeds)
 
 	@RequestMapping(method = RequestMethod.POST, value = "/atom")
-	public String readFeed(@RequestBody Feed feed) {
+	public @ResponseBody String readFeed(@RequestBody Feed feed) {
 		return "Read " + feed.getTitle();
 	}
 
@@ -92,7 +92,7 @@ public class MessageConvertersController {
 	// serving RSS feeds)
 
 	@RequestMapping(method = RequestMethod.POST, value = "/rss")
-	public String readChannel(@RequestBody Channel channel) {
+	public @ResponseBody String readChannel(@RequestBody Channel channel) {
 		return "Read " + channel.getTitle();
 	}
 

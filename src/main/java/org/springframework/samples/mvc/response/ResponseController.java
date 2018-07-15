@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ResponseController {
 
 	@RequestMapping(value = "/annotation", method = RequestMethod.GET)
-	public String responseBody() {
+	public @ResponseBody String responseBody() {
 		return "The String ResponseBody";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/charset/accept")
-	public String responseAcceptHeaderCharset() {
+	public @ResponseBody String responseAcceptHeaderCharset() {
 		return "\u3053\u3093\u306b\u3061\u306f\u4e16\u754c\uff01 (\"Hello world!\" in Japanese)";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/charset/produce", produces = "text/plain;charset=UTF-8")
-	public String responseProducesConditionCharset() {
+	public @ResponseBody String responseProducesConditionCharset() {
 		return "\u3053\u3093\u306b\u3061\u306f\u4e16\u754c\uff01 (\"Hello world!\" in Japanese)";
 	}
 
