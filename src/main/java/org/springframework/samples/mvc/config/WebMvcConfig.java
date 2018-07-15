@@ -18,6 +18,7 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -80,6 +81,38 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Bean
 	public MultipartResolver multipartResolver() {
 		return new CommonsMultipartResolver();
+	}
+	
+	/**
+	 * ²Î¿¼5.0.4ÊµÏÖ
+	 * @return
+	 */
+	@Bean
+	public ViewResolver mvcViewResolver() {
+//		ViewResolverRegistry registry = new ViewResolverRegistry(
+//				mvcContentNegotiationManager(), this.applicationContext);
+//		configureViewResolvers(registry);
+//
+//		if (registry.getViewResolvers().isEmpty() && this.applicationContext != null) {
+//			String[] names = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(
+//					this.applicationContext, ViewResolver.class, true, false);
+//			if (names.length == 1) {
+//				registry.getViewResolvers().add(new InternalResourceViewResolver());
+//			}
+//		}
+//
+//		ViewResolverComposite composite = new ViewResolverComposite();
+//		composite.setOrder(registry.getOrder());
+//		composite.setViewResolvers(registry.getViewResolvers());
+//		if (this.applicationContext != null) {
+//			composite.setApplicationContext(this.applicationContext);
+//		}
+//		if (this.servletContext != null) {
+//			composite.setServletContext(this.servletContext);
+//		}
+//		return composite;
+		
+		return null;
 	}
 
 	@Override
